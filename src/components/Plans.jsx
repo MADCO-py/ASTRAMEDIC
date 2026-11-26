@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 import { NOTE, PAYMENT_METHODS, openLead } from '../data.js'
 import { CountUp, Eyebrow, Magnetic, SplitWords, ease } from './ui.jsx'
-import { CatWatcher, SyringeField } from './PlansDecor.jsx'
+import { CatWatcher } from './PlansDecor.jsx'
 import PlanTable from './PlanTable.jsx'
 
 export default function Plans({ data, mode }) {
@@ -11,7 +11,6 @@ export default function Plans({ data, mode }) {
 
   return (
     <section id="planes" className={`section plans plans-${mode}`}>
-      {mode === 'personas' && <SyringeField />}
       <div className="plans-grid">
         <div className="plans-left">
           <Eyebrow index="03">Planes anuales</Eyebrow>

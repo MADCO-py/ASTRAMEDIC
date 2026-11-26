@@ -57,6 +57,18 @@ function useWalker(paused) {
   return { x, pose }
 }
 
+function useIsMobile() {
+  const query = '(max-width: 760px)'
+  const [m, setM] = useState(() => typeof window !== 'undefined' && window.matchMedia(query).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(query)
+    const on = () => setM(mq.matches)
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [])
+  return m
+}
+
 export default function Chatbot({ mode }) {
   const [open, setOpen] = useState(false)
   const [bubble, setBubble] = useState(false)
@@ -65,8 +77,12 @@ export default function Chatbot({ mode }) {
   const [input, setInput] = useState('')
   const bodyRef = useRef(null)
   const timers = useRef([])
-  const walk = useWalker(open)
-  const face = walk.pose.endsWith('left') ? -1 : 1
+  const isMobile = useIsMobile()
+  // En celular Astra se queda quieto en la esquina derecha
+  const astraStill = isMobile && mode === 'personas'
+  const walk = useWalker(open || astraStill)
+  useEffect(() => { if (astraStill) walk.x.set(0) }, [astraStill, walk.x])
+  const face = !astraStill && walk.pose.endsWith('left') ? -1 : 1
   const walking = walk.pose.startsWith('walk')
 
   const faq = getFaq(mode)
@@ -253,7 +269,7 @@ export default function Chatbot({ mode }) {
         >
           <motion.div className="bot-figure" animate={{ scaleX: face }} transition={{ duration: 0.25 }}>
             {/* Al darle clic (chat abierto), Miki se sienta y mueve la colita */}
-            {isRobot ? <Astra walking={walking} /> : <Miki walking={walking} sitting={open} />}
+            {isRobot ? <Astra walking={walking} still={astraStill} /> : <Miki walking={walking} sitting={open} />}
           </motion.div>
           <span className="bot-launcher-label">{open ? 'Cerrar' : 'Ayuda'}</span>
         </motion.button>

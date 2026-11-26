@@ -7,14 +7,14 @@ const blink = {
 }
 
 // Astra (Personas): la "A" del logo, con ojos y boca. Camina y da vueltas.
-export function Astra({ walking = false, talking = false }) {
+export function Astra({ walking = false, talking = false, still = false }) {
   return (
     <motion.svg
       viewBox="0 0 80 100"
       className="mascot-svg"
       aria-hidden="true"
-      animate={walking ? { rotate: [-5, 5, -5], rotateY: 0 } : { rotate: 0, rotateY: [0, 0, 360] }}
-      transition={walking ? { duration: 0.6, repeat: Infinity } : { duration: 5, times: [0, 0.8, 1], repeat: Infinity, ease: 'easeInOut' }}
+      animate={still ? { rotate: 0, rotateY: 0 } : walking ? { rotate: [-5, 5, -5], rotateY: 0 } : { rotate: 0, rotateY: [0, 0, 360] }}
+      transition={still ? { duration: 0.3 } : walking ? { duration: 0.6, repeat: Infinity } : { duration: 5, times: [0, 0.8, 1], repeat: Infinity, ease: 'easeInOut' }}
       style={{ originX: '50%', originY: '100%' }}
     >
       <ellipse cx="40" cy="97" rx="26" ry="2.5" fill="rgba(0,0,0,.15)" />

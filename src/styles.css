@@ -638,13 +638,9 @@ html.modal-open { overflow: hidden; }
   .hero-pet img { border-width: 4px; }
 }
 
-/* ───────────────────────── PLANES: VACUNAS Y GATO ───────────────────────── */
+/* ───────────────────────── PLANES: GATO ───────────────────────── */
 .plans { position: relative; }
 .plans-grid { position: relative; z-index: 1; }
-.syringe-field { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(5, 1fr); pointer-events: none; overflow: hidden; }
-.syringe-cell { display: grid; place-items: center; }
-.syringe { display: block; width: 18px; height: 54px; color: #ffffff; opacity: .18; transition: opacity .3s; will-change: transform; }
-.syringe svg { width: 100%; height: 100%; display: block; }
 
 .plans-mascotas { padding-top: clamp(190px, 24vh, 240px); }
 @media (max-width: 960px) { .plans-mascotas .plan-summary { margin-top: 140px; } }
@@ -653,9 +649,6 @@ html.modal-open { overflow: hidden; }
 .cat-body { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; }
 .cat-eye { position: absolute; overflow: hidden; background: #fcf2dc; border-radius: 50%; }
 .cat-eye img { position: absolute; left: 50%; top: 50%; width: 138%; transform: translate(-50%, -50%); user-select: none; will-change: transform; }
-@media (max-width: 960px) {
-  .syringe-field { grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(8, 1fr); }
-}
 @media (max-width: 600px) {
   .plans-mascotas { padding-top: 80px; }
   .cat-watch { width: 140px; right: 10px; }
@@ -731,4 +724,13 @@ html.modal-open { overflow: hidden; }
   .pt-yes { width: 22px; height: 22px; font-size: 12px; }
   .pt-cta { font-size: 12px; min-height: 38px; padding: 0 4px; }
   .ptable .tag { font-size: 9px; padding: 3px 5px; }
+}
+
+/* ───────────────────────── CURSOR DE PATITA (solo mascotas, solo con mouse) ───────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  html[data-mode='mascotas'], html[data-mode='mascotas'] * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg transform='rotate%28-18 16 16%29' fill='%2301265c' stroke='%23ffffff' stroke-width='1.6'%3E%3Cellipse cx='16' cy='22' rx='7' ry='6'/%3E%3Cellipse cx='7.5' cy='14' rx='3' ry='3.6'/%3E%3Cellipse cx='12.8' cy='8.2' rx='3' ry='3.8'/%3E%3Cellipse cx='19.2' cy='8.2' rx='3' ry='3.8'/%3E%3Cellipse cx='24.5' cy='14' rx='3' ry='3.6'/%3E%3C/g%3E%3C/svg%3E") 12 4, auto; }
+  html[data-mode='mascotas'] :is(a, button, [role='button'], label, select, summary, .gmap-muni, .t-track),
+  html[data-mode='mascotas'] :is(a, button, [role='button'], label, summary) * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg transform='rotate%28-18 16 16%29' fill='%23ffffff' stroke='%2301265c' stroke-width='1.6'%3E%3Cellipse cx='16' cy='22' rx='7' ry='6'/%3E%3Cellipse cx='7.5' cy='14' rx='3' ry='3.6'/%3E%3Cellipse cx='12.8' cy='8.2' rx='3' ry='3.8'/%3E%3Cellipse cx='19.2' cy='8.2' rx='3' ry='3.8'/%3E%3Cellipse cx='24.5' cy='14' rx='3' ry='3.6'/%3E%3C/g%3E%3C/svg%3E") 12 4, pointer; }
+  html[data-mode='mascotas'] :is(input, textarea) { cursor: text; }
+  html[data-mode='mascotas'] :disabled, html[data-mode='mascotas'] :disabled * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg transform='rotate%28-18 16 16%29' fill='%2301265c' stroke='%23ffffff' stroke-width='1.6'%3E%3Cellipse cx='16' cy='22' rx='7' ry='6'/%3E%3Cellipse cx='7.5' cy='14' rx='3' ry='3.6'/%3E%3Cellipse cx='12.8' cy='8.2' rx='3' ry='3.8'/%3E%3Cellipse cx='19.2' cy='8.2' rx='3' ry='3.8'/%3E%3Cellipse cx='24.5' cy='14' rx='3' ry='3.6'/%3E%3C/g%3E%3C/svg%3E") 12 4, default; }
 }
