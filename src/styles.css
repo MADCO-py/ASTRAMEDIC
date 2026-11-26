@@ -561,30 +561,6 @@ html.modal-open { overflow: hidden; }
 .t-card figcaption span { color: var(--muted); }
 .t-example { position: absolute; top: 14px; right: 14px; padding: 3px 8px; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; background: #ffcf3f; color: #2a1a0c; }
 
-/* ───────────────────────── CALCULADORA ───────────────────────── */
-.calc { background: var(--bg-alt); max-width: none; }
-.calc-grid { max-width: 1248px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 110px); align-items: center; }
-.calc .lead { margin-top: 22px; }
-.calc-card { background: var(--bg); padding: clamp(24px, 3vw, 40px); display: grid; gap: 22px; box-shadow: 0 30px 60px rgba(1,38,99,.12); }
-.calc-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.calc-row.column { flex-direction: column; align-items: stretch; }
-.calc-label { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.stepper { display: flex; align-items: center; border: 1px solid var(--line); }
-.stepper button { width: 52px; height: 52px; font-size: 24px; transition: background-color .2s; }
-.stepper button:hover:not(:disabled) { background: var(--accent); color: var(--accent-ink); }
-.stepper button:disabled { opacity: .3; cursor: default; }
-.stepper-value { width: 64px; text-align: center; font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.calc-paws { display: flex; flex-wrap: wrap; gap: 6px; min-height: 30px; }
-.calc-paws span { width: 28px; color: var(--accent); display: block; }
-.calc-result { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.calc-result .big { grid-column: 1 / -1; }
-.calc-result dt { font-size: 12px; color: var(--muted); font-weight: 600; }
-.calc-result dd { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.calc-result .big dd { font-size: clamp(44px, 5vw, 64px); letter-spacing: -.04em; line-height: 1.05; }
-
-@media (max-width: 960px) {
-  .calc-grid { grid-template-columns: 1fr; }
-}
 @media (max-width: 600px) {
   .field-grid { grid-template-columns: 1fr; }
   .btn-wa-big { width: 100%; }
@@ -593,10 +569,12 @@ html.modal-open { overflow: hidden; }
 /* ───────────────────────── MAPA ───────────────────────── */
 .gmap { position: relative; }
 .gmap-svg { width: 100%; height: auto; display: block; overflow: visible; }
-.gmap-base polygon { fill: var(--teal); stroke: var(--teal); stroke-width: 6; stroke-linejoin: round; }
+.gmap-base polygon { fill: var(--line); stroke: var(--line); stroke-width: 6; stroke-linejoin: round; }
 .gmap-pulse polygon { fill: none; stroke: var(--teal); stroke-width: 10; stroke-linejoin: round; }
 .gmap-muni { fill: var(--teal); stroke: #ffffff; stroke-width: 2; stroke-linejoin: round; cursor: pointer; transition: fill .25s; }
-.gmap-muni.is-hover { fill: var(--navy); }
+.gmap-muni.is-out { fill: color-mix(in srgb, var(--ink) 10%, var(--bg)); }
+.gmap-muni.is-out.is-hover { fill: color-mix(in srgb, var(--ink) 18%, var(--bg)); }
+.gmap-muni.is-city.is-hover { fill: var(--navy); }
 .gmap-lake { fill: #bfe9f7; stroke: #ffffff; stroke-width: 1.5; }
 .gmap-pin { fill: var(--navy); stroke: #fff; stroke-width: 1.5; }
 .gmap-pin-dot { fill: var(--bg); }
@@ -688,43 +666,7 @@ html.modal-open { overflow: hidden; }
   .footer { padding-bottom: 180px; }
 }
 
-/* ───────────────────────── TABLA COMPARATIVA (MASCOTAS) ───────────────────────── */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.ptable-wrap { position: relative; z-index: 1; max-width: 1248px; margin: clamp(48px, 7vh, 80px) auto 0; background: var(--bg); color: var(--ink); padding: clamp(20px, 3vw, 40px); }
-.ptable-title { font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -.02em; margin-bottom: 18px; }
-.ptable-scroll { overflow-x: auto; }
-.ptable { width: 100%; border-collapse: collapse; min-width: 520px; }
-.ptable th, .ptable td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: center; }
-.ptable tbody th { text-align: left; font-weight: 500; font-size: 15px; }
-.ptable thead th { vertical-align: bottom; padding-bottom: 16px; }
-.ptable thead th > span { display: block; }
-.ptable .tag { display: inline-block !important; margin-bottom: 8px; }
-.pt-name { font-size: 15px; font-weight: 600; }
-.pt-price { font-size: clamp(22px, 2.4vw, 30px); font-weight: 800; letter-spacing: -.03em; }
-.pt-price small { font-size: 12px; font-weight: 500; color: var(--muted); margin-left: 2px; }
-.pt-month { font-size: 12px; color: var(--muted); }
-.ptable .featured { background: color-mix(in srgb, var(--teal) 12%, transparent); }
-.pt-yes { display: inline-grid; place-items: center; width: 28px; height: 28px; background: var(--teal); color: #fff; font-weight: 800; font-size: 14px; }
-.pt-no { color: var(--line); font-weight: 700; font-size: 18px; }
-.pt-cta { width: 100%; max-width: 160px; min-height: 42px; font-weight: 700; font-size: 14px; border: 1.5px solid var(--navy); color: var(--navy); transition: background-color .2s, color .2s; }
-.pt-cta:hover { background: var(--navy); color: #fff; }
-.ptable .featured .pt-cta { background: var(--navy); color: #fff; }
-.ptable tfoot td, .ptable tfoot th { border-bottom: 0; padding-top: 18px; }
-@media (max-width: 600px) {
-  .ptable { min-width: 0; table-layout: fixed; }
-  .ptable thead th:first-child, .ptable tbody th { width: 40%; }
-  .ptable-wrap { padding: 18px 12px; margin-left: -8px; margin-right: -8px; }
-  .pt-month, .pt-price small { display: none !important; }
-  .ptable tbody th { hyphens: auto; }
-  .ptable th, .ptable td { padding: 10px 4px; }
-  .ptable tbody th { font-size: 13px; }
-  .pt-name { font-size: 13px; }
-  .pt-price { font-size: 19px; }
-  .pt-month { font-size: 10px; }
-  .pt-yes { width: 22px; height: 22px; font-size: 12px; }
-  .pt-cta { font-size: 12px; min-height: 38px; padding: 0 4px; }
-  .ptable .tag { font-size: 9px; padding: 3px 5px; }
-}
 
 /* ───────────────────────── CURSOR DE PATITA (solo mascotas, solo con mouse) ───────────────────────── */
 @media (hover: hover) and (pointer: fine) {
@@ -734,3 +676,6 @@ html.modal-open { overflow: hidden; }
   html[data-mode='mascotas'] :is(input, textarea) { cursor: text; }
   html[data-mode='mascotas'] :disabled, html[data-mode='mascotas'] :disabled * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg transform='rotate%28-18 16 16%29' fill='%2301265c' stroke='%23ffffff' stroke-width='1.6'%3E%3Cellipse cx='16' cy='22' rx='7' ry='6'/%3E%3Cellipse cx='7.5' cy='14' rx='3' ry='3.6'/%3E%3Cellipse cx='12.8' cy='8.2' rx='3' ry='3.8'/%3E%3Cellipse cx='19.2' cy='8.2' rx='3' ry='3.8'/%3E%3Cellipse cx='24.5' cy='14' rx='3' ry='3.6'/%3E%3C/g%3E%3C/svg%3E") 12 4, default; }
 }
+
+.coverage-note { margin: 12px 0 24px; max-width: 52ch; }
+.plan-home-note { margin-top: 18px; font-weight: 700; color: var(--accent); }

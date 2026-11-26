@@ -2,10 +2,10 @@
 //  CONFIGURACIÓN GENERAL — edita aquí los datos de contacto
 // ─────────────────────────────────────────────────────────────
 export const CONTACT = {
-  // ⚠️ NÚMERO DE PRUEBA. Reemplazar por el número real (código de país + 8 dígitos, solo números).
-  whatsapp: '50200000000',
-  whatsappDisplay: '+502 0000-0000',
-  whatsappIsPlaceholder: true,
+  // Código de país + 8 dígitos, solo números
+  whatsapp: '50253958261',
+  whatsappDisplay: '+502 5395-8261',
+  whatsappIsPlaceholder: false,
   email: 'info@astra-medic.com',
   // ⚠️ Redes de prueba: pon la URL real y cambia 'ready' a true.
   socials: [
@@ -17,6 +17,12 @@ export const CONTACT = {
 export const BRAND = 'Astramedic'
 
 export const NOTE = '* Precios y condiciones sujetos a cobertura y validación de Astramedic.'
+
+// Cobertura: por ahora solo la Ciudad de Guatemala (con excepciones por seguridad)
+export const COVERAGE = {
+  short: 'Ciudad de Guatemala*',
+  note: '* Por motivos de seguridad, hay algunas zonas de la ciudad que no cubrimos. Escribinos y te confirmamos si llegamos a tu dirección.',
+}
 
 export const PAYMENT_METHODS = ['Transferencia', 'Tarjeta de crédito', 'Cheque']
 
@@ -45,7 +51,7 @@ const personas = {
   from: 840,
   marquee: [
     'Visitas sin límite a domicilio',
-    'Todo el departamento de Guatemala',
+    'Ciudad de Guatemala',
     'Consulta médica general',
     'Laboratorios a domicilio',
     'Medicamentos con receta',
@@ -78,6 +84,11 @@ const personas = {
   bot: { name: 'Astra', role: 'Asistente de salud' },
 }
 
+const PET_FEATURES = [
+  'Consulta veterinaria general', 'Descuento en vacunas', 'Descuento en laboratorios', 'Desparasitación',
+  'Seguimiento de salud', 'Asesoría nutricional', 'Convenios y beneficios especiales',
+]
+
 const mascotas = {
   key: 'mascotas',
   label: 'Mascotas',
@@ -87,7 +98,7 @@ const mascotas = {
   from: 600,
   marquee: [
     'Visitas sin límite a domicilio',
-    'Todo el departamento de Guatemala',
+    'Ciudad de Guatemala',
     'Consulta veterinaria general',
     'Laboratorios',
     'Vacunas y medicamentos',
@@ -103,22 +114,11 @@ const mascotas = {
     { title: 'Laboratorios' },
     { title: 'Vacunas y medicamentos' },
   ],
+  // El plan es por domicilio, no por mascota. Los 3 planes incluyen todo; solo cambia la forma de pago.
   plans: [
-    {
-      id: 1, name: '1 pago', price: 600, monthly: 50,
-      features: ['Consulta veterinaria general', 'Descuento en laboratorios', 'Seguimiento de salud', 'Asesoría nutricional'],
-    },
-    {
-      id: 2, name: '2 pagos', price: 660, monthly: 55, featured: true,
-      features: ['Consulta veterinaria general', 'Descuento en vacunas', 'Descuento en laboratorios', 'Seguimiento de salud', 'Asesoría nutricional'],
-    },
-    {
-      id: 3, name: '3 pagos', price: 720, monthly: 60,
-      features: [
-        'Consulta veterinaria general', 'Descuento en vacunas', 'Descuento en laboratorios', 'Desparasitación',
-        'Seguimiento de salud', 'Asesoría nutricional', 'Convenios y beneficios especiales',
-      ],
-    },
+    { id: 1, name: '1 pago', price: 600, monthly: 50, features: PET_FEATURES },
+    { id: 2, name: '2 pagos', price: 660, monthly: 55, featured: true, features: PET_FEATURES },
+    { id: 3, name: '3 pagos', price: 720, monthly: 60, features: PET_FEATURES },
   ],
   bot: { name: 'Miki', role: 'Asistente veterinario' },
 }
@@ -146,21 +146,21 @@ export function getFaq(mode) {
     {
       q: '¿Qué zonas cubren?',
       short: 'Cobertura',
-      keys: ['zona', 'cubren', 'cobertura', 'donde', 'dónde', 'ciudad', 'guatemala', 'llegan', 'municipio', 'mixco', 'villa', 'nueva', 'canales', 'pinula', 'fraijanes', 'amatitlan', 'chinautla', 'petapa', 'palencia', 'sacatepequez', 'ayampuc', 'golfo', 'chuarrancho', 'raymundo', 'departamento', 'carretera'],
-      a: 'Cubrimos todo el departamento de Guatemala: los 17 municipios, incluida la Ciudad de Guatemala, Mixco, Villa Nueva, Santa Catarina Pinula, San José Pinula, Fraijanes, Amatitlán y más. Compartinos la dirección de tu visita y coordinamos la atención en casa.',
+      keys: ['zona', 'cubren', 'cobertura', 'donde', 'dónde', 'ciudad', 'guatemala', 'llegan', 'municipio', 'mixco', 'villa', 'nueva', 'canales', 'pinula', 'fraijanes', 'amatitlan', 'chinautla', 'petapa', 'palencia', 'sacatepequez', 'departamento', 'carretera', 'colonia', 'direccion', 'dirección'],
+      a: 'Por ahora cubrimos la Ciudad de Guatemala. Por motivos de seguridad, hay algunas zonas de la ciudad que no cubrimos. Compartinos tu dirección y te confirmamos si llegamos.',
     },
     {
       q: '¿Cuánto cuesta y cómo se paga?',
       short: 'Precios y pagos',
       keys: ['cuesta', 'precio', 'costo', 'cuanto', 'cuánto', 'pago', 'pagar', 'paga', 'tarjeta', 'transferencia', 'cheque', 'mensual', 'q'],
-      a: `Es un plan anual: ${q(p1.price)} en 1 pago (equivale a ${q(p1.monthly)} mensuales), ${q(p2.price)} en 2 pagos (${q(p2.monthly)} mensuales) o ${q(p3.price)} en 3 pagos (${q(p3.monthly)} mensuales). Aceptamos transferencia, tarjeta de crédito o cheque.`,
+      a: `Es un plan anual: ${q(p1.price)} en 1 pago (equivale a ${q(p1.monthly)} mensuales), ${q(p2.price)} en 2 pagos (${q(p2.monthly)} mensuales) o ${q(p3.price)} en 3 pagos (${q(p3.monthly)} mensuales). Aceptamos transferencia, tarjeta de crédito o cheque.${isPet ? ' El plan es por domicilio, no por mascota.' : ''}`,
     },
     {
       q: '¿Qué diferencia hay entre los planes?',
       short: 'Diferencias',
       keys: ['diferencia', 'incluye', 'plan', 'planes', 'beneficio', 'mejor', 'comparar'],
       a: isPet
-        ? 'Todos incluyen consulta veterinaria general, descuento en laboratorios, seguimiento de salud y asesoría nutricional. El de 2 pagos suma descuento en vacunas, y el de 3 pagos agrega además desparasitación y convenios y beneficios especiales.'
+        ? 'Los tres planes incluyen lo mismo: consulta veterinaria general, descuento en vacunas y laboratorios, desparasitación, seguimiento de salud, asesoría nutricional y convenios y beneficios especiales. Solo cambia la forma de pago: 1, 2 o 3 pagos al año. El plan es por domicilio, no por mascota.'
         : 'Los tres planes incluyen lo mismo: consultas médicas, laboratorios, vacunas y venta de medicamentos. Solo cambia la forma de pago: 1, 2 o 3 pagos al año.',
     },
     {

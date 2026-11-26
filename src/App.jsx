@@ -14,7 +14,6 @@ import Footer from './components/Footer.jsx'
 import Chatbot from './components/Chatbot.jsx'
 import ModeTransition from './components/ModeTransition.jsx'
 import Testimonials from './components/Testimonials.jsx'
-import PetCalculator from './components/PetCalculator.jsx'
 import PetGallery from './components/PetGallery.jsx'
 import LeadForm from './components/LeadForm.jsx'
 import Legal from './components/Legal.jsx'
@@ -94,7 +93,6 @@ export default function App() {
           <Services data={data} mode={mode} />
           {mode === 'mascotas' && <PetGallery />}
           <Plans data={data} mode={mode} />
-          {mode === 'mascotas' && <PetCalculator />}
           <Testimonials mode={mode} />
           <Notice mode={mode} />
           <Contact mode={mode} />

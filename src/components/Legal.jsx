@@ -14,7 +14,7 @@ function Terminos() {
       <h4>1. El servicio</h4>
       <p>Astramedic ofrece planes anuales de atención a domicilio para personas (consulta médica general, laboratorios, vacunas y medicamentos con receta) y para mascotas (consulta veterinaria general, laboratorios, vacunas y medicamentos), según el plan contratado.</p>
       <h4>2. Cobertura</h4>
-      <p>El servicio se presta en el departamento de Guatemala (sus 17 municipios, incluida la Ciudad de Guatemala). Las visitas a domicilio son sin límite durante la vigencia del plan anual.</p>
+      <p>Por ahora el servicio se presta en la Ciudad de Guatemala. Por motivos de seguridad, hay algunas zonas de la ciudad que no se cubren; Astramedic confirmará la cobertura de cada dirección antes de contratar. Las visitas a domicilio son sin límite durante la vigencia del plan anual.</p>
       <h4>3. Emergencias</h4>
       <p>Astramedic no atiende emergencias. Ante una emergencia, acudí al servicio de emergencias o a la clínica veterinaria de emergencias más cercana.</p>
       <h4>4. Precios y pagos</h4>

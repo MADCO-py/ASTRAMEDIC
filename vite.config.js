@@ -17,7 +17,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 // Datos estructurados (schema.org) para que Google entienda el negocio
 function structuredData() {
   const socials = CONTACT.socials.filter((s) => s.ready).map((s) => s.url)
-  const area = { '@type': 'AdministrativeArea', name: 'Departamento de Guatemala', containedInPlace: { '@type': 'Country', name: 'Guatemala' } }
+  const area = { '@type': 'City', name: 'Ciudad de Guatemala', containedInPlace: { '@type': 'Country', name: 'Guatemala' } }
   const offers = (mode) =>
     MODES[mode].plans.map((p) => ({
       '@type': 'Offer',
@@ -103,10 +103,11 @@ function staticContent() {
       </section>`
   }
   return `
+    <div class="boot" aria-hidden="true"><img class="boot-light" src="./img/logo-mark-light.png" alt="" /><img class="boot-dark" src="./img/logo-mark.png" alt="" /></div>
     <div class="seo-fallback">
       <header><img src="./img/logo-mark.png" alt="Astramedic" width="64" height="49" /><p class="brand">ASTRA<b>MEDIC</b></p></header>
       <h1>Astramedic: atención médica y veterinaria a domicilio en Guatemala</h1>
-      <p>Planes anuales con visitas sin límite a domicilio en todo el departamento de Guatemala, incluida la Ciudad de Guatemala. Elegí pagar en 1, 2 o 3 pagos con transferencia, tarjeta de crédito o cheque.</p>
+      <p>Planes anuales con visitas sin límite a domicilio en la Ciudad de Guatemala (por motivos de seguridad, hay algunas zonas que no cubrimos). Elegí pagar en 1, 2 o 3 pagos con transferencia, tarjeta de crédito o cheque.</p>
       ${block('personas')}
       ${block('mascotas')}
       <p>Astramedic no atiende emergencias. Escribinos a <a href="mailto:${CONTACT.email}">${CONTACT.email}</a>.</p>

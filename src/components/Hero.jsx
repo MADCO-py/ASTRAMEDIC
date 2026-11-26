@@ -154,7 +154,7 @@ export default function Hero({ data, mode, scrollTo }) {
           </div>
           <div>
             <dt>Cobertura</dt>
-            <dd>Depto. de Guatemala</dd>
+            <dd>Ciudad de Guatemala*</dd>
           </div>
         </dl>
       </motion.div>

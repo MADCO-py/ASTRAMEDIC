@@ -47,7 +47,6 @@ export default function LeadForm({ mode }) {
     if (form.payment) lines.push(`• Forma de pago: ${form.payment}`)
     if (isPet) {
       lines.push(`• Mascotas: ${form.pets} (${form.petType})`)
-      if (Number(form.pets) > 1) lines.push(`• Total estimado: Q${(plan.price * Number(form.pets)).toLocaleString('es-GT')} al año`)
       if (form.petName.trim()) lines.push(`• Nombre(s): ${form.petName.trim()}`)
     }
     if (form.comment.trim()) lines.push(`• Comentario: ${form.comment.trim()}`)
@@ -104,8 +103,8 @@ export default function LeadForm({ mode }) {
                 {errors.phone && <em>{errors.phone}</em>}
               </label>
               <label className={`field span-2 ${errors.zone ? 'has-error' : ''}`}>
-                <span>Municipio, zona o colonia *</span>
-                <input value={form.zone} onChange={set('zone')} placeholder="Ej. Mixco, Zona 4 · o Ciudad, Zona 15" maxLength={100} />
+                <span>Zona y colonia *</span>
+                <input value={form.zone} onChange={set('zone')} placeholder="Ej. Zona 15, Vista Hermosa" maxLength={100} />
                 {errors.zone && <em>{errors.zone}</em>}
               </label>
 

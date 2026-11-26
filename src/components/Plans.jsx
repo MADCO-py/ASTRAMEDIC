@@ -3,7 +3,6 @@ import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 import { NOTE, PAYMENT_METHODS, openLead } from '../data.js'
 import { CountUp, Eyebrow, Magnetic, SplitWords, ease } from './ui.jsx'
 import { CatWatcher } from './PlansDecor.jsx'
-import PlanTable from './PlanTable.jsx'
 
 export default function Plans({ data, mode }) {
   const [selected, setSelected] = useState(2)
@@ -43,6 +42,7 @@ export default function Plans({ data, mode }) {
               })}
             </div>
           </LayoutGroup>
+          {mode === 'mascotas' && <p className="plan-home-note">El plan es por domicilio, no por mascota.</p>}
           <p className="fineprint">{NOTE}</p>
         </div>
 
@@ -105,7 +105,6 @@ export default function Plans({ data, mode }) {
           </Magnetic>
         </motion.div>
       </div>
-      {mode === 'mascotas' && <PlanTable plans={data.plans} />}
     </section>
   )
 }

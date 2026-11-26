@@ -1,4 +1,4 @@
-import { CONTACT, contactLink } from '../data.js'
+import { CONTACT, COVERAGE, contactLink } from '../data.js'
 import { Eyebrow, Magnetic, Reveal, SplitWords } from './ui.jsx'
 import Socials from './Socials.jsx'
 import GuateMap from './GuateMap.jsx'
@@ -15,11 +15,12 @@ export default function Contact({ mode }) {
       <div className="contact-inner">
         <Eyebrow index="04">Cobertura y contacto</Eyebrow>
         <h2 className="h2">
-          <SplitWords text="Cubrimos todo" className="line" />
-          <SplitWords text="Guatemala." className="line line-alt" delay={0.15} />
+          <SplitWords text="Llegamos a la" className="line" />
+          <SplitWords text="Ciudad de Guatemala*" className="line line-alt" delay={0.15} />
         </h2>
         <Reveal delay={0.2}>
-          <p className="lead">Llegamos a los 17 municipios del departamento, incluida la Ciudad de Guatemala. Para más información, escribinos por WhatsApp o correo.</p>
+          <p className="lead">Por ahora cubrimos la Ciudad de Guatemala. Para más información, escribinos por WhatsApp o correo.</p>
+          <p className="fineprint coverage-note">{COVERAGE.note}</p>
           <div className="contact-actions">
             <Magnetic className="btn btn-primary btn-wa btn-wa-big" href={contact.href} target="_blank" rel="noreferrer">
               <WhatsAppIcon size={22} /> {contact.label}

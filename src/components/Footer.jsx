@@ -17,7 +17,7 @@ export default function Footer({ mode, onSwitch, scrollTo }) {
       <div className="footer-grid">
         <div>
           <Logo tone={mode === 'personas' ? 'light' : 'white'} />
-          <p className="footer-desc">Atención {mode === 'personas' ? 'médica' : 'veterinaria'} a domicilio en todo el departamento de Guatemala.</p>
+          <p className="footer-desc">Atención {mode === 'personas' ? 'médica' : 'veterinaria'} a domicilio en la Ciudad de Guatemala.</p>
         </div>
         <ul>
           <li><button onClick={() => scrollTo('como-funciona')}>Cómo funciona</button></li>

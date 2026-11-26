@@ -1,6 +1,6 @@
 # Astramedic — sitio web
 
-Atención médica y veterinaria a domicilio en todo el departamento de Guatemala. Dos modos en la misma página: **Personas** (`#/personas`) y **Mascotas** (`#/mascotas`).
+Atención médica y veterinaria a domicilio en la Ciudad de Guatemala. Dos modos en la misma página: **Personas** (`#/personas`) y **Mascotas** (`#/mascotas`).
 
 ## Ver en local
 ```bash
