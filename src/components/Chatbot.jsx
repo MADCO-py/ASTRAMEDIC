@@ -1,34 +1,60 @@
 import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, animate, motion, useMotionValue } from 'framer-motion'
 import { MODES, contactLink, getFaq, matchFaq } from '../data.js'
 import { Astra, Miki } from './Mascots.jsx'
 import { ease } from './ui.jsx'
 
+// Avatar pequeño (encabezado y mensajes del chat)
 function Avatar({ mode, ...props }) {
   return mode === 'personas' ? <Astra {...props} /> : <Miki {...props} />
 }
 
 const time = () => new Date().toLocaleTimeString('es-GT', { hour: '2-digit', minute: '2-digit' })
 
-// Recorrido del asistente: camina a la izquierda, pausa 10 s, regresa a la derecha, pausa 10 s
-// En celular camina menos para no tapar el contenido
+// Recorrido: camina a la izquierda, pausa 10 s, regresa a la derecha, pausa 10 s.
+// En celular camina menos para no tapar el contenido.
 const WALK_X = typeof window !== 'undefined' && window.innerWidth < 600 ? -90 : -170
-const PHASES = [
-  { x: WALK_X, walking: true, face: -1, ms: 2600 },
-  { x: WALK_X, walking: false, face: -1, ms: 10000 },
-  { x: 0, walking: true, face: 1, ms: 2600 },
-  { x: 0, walking: false, face: 1, ms: 10000 },
-]
+const SPEED = 170 / 2.6 // px por segundo
+const PAUSE = 10000
 
-function useWalk(active) {
-  const [i, setI] = useState(3)
+// Mueve al asistente con su propio motion value: así puede detenerse justo donde está
+function useWalker(paused) {
+  const x = useMotionValue(0)
+  const [pose, setPose] = useState('stand-right')
+
   useEffect(() => {
-    if (!active) return
-    const t = setTimeout(() => setI((n) => (n + 1) % PHASES.length), i === 3 ? 4000 : PHASES[i].ms)
-    return () => clearTimeout(t)
-  }, [i, active])
-  useEffect(() => { if (!active) setI(3) }, [active])
-  return active ? PHASES[i] : PHASES[3]
+    if (paused) return
+    let cancelled = false
+    let ctrl = null
+    const timers = []
+    const wait = (ms) => new Promise((r) => timers.push(setTimeout(r, ms)))
+    const go = async (target, dir) => {
+      const dist = Math.abs(target - x.get())
+      if (dist > 1) {
+        setPose(`walk-${dir}`)
+        ctrl = animate(x, target, { duration: dist / SPEED, ease: 'linear' })
+        await ctrl
+      }
+      if (!cancelled) setPose(`stand-${dir}`)
+    }
+    ;(async () => {
+      await wait(3000)
+      while (!cancelled) {
+        await go(WALK_X, 'left'); if (cancelled) break
+        await wait(PAUSE); if (cancelled) break
+        await go(0, 'right'); if (cancelled) break
+        await wait(PAUSE)
+      }
+    })()
+    return () => {
+      cancelled = true
+      ctrl?.stop()
+      timers.forEach(clearTimeout)
+      setPose((p) => p.replace('walk-', 'stand-'))
+    }
+  }, [paused, x])
+
+  return { x, pose }
 }
 
 export default function Chatbot({ mode }) {
@@ -39,7 +65,9 @@ export default function Chatbot({ mode }) {
   const [input, setInput] = useState('')
   const bodyRef = useRef(null)
   const timers = useRef([])
-  const walk = useWalk(!open)
+  const walk = useWalker(open)
+  const face = walk.pose.endsWith('left') ? -1 : 1
+  const walking = walk.pose.startsWith('walk')
 
   const faq = getFaq(mode)
   const bot = MODES[mode].bot
@@ -200,8 +228,7 @@ export default function Chatbot({ mode }) {
 
       <motion.div
         className="bot-walker"
-        animate={{ x: walk.x }}
-        transition={{ duration: walk.walking ? PHASES[0].ms / 1000 : 0.5, ease: 'linear' }}
+        style={{ x: walk.x }}
       >
         <AnimatePresence>
           {bubble && !open && (
@@ -224,12 +251,9 @@ export default function Chatbot({ mode }) {
           aria-expanded={open}
           whileTap={{ scale: 0.94 }}
         >
-          <motion.div
-            className="bot-figure"
-            animate={{ scaleX: walk.face }}
-            transition={{ duration: 0.25 }}
-          >
-            <Avatar mode={mode} walking={walk.walking} />
+          <motion.div className="bot-figure" animate={{ scaleX: face }} transition={{ duration: 0.25 }}>
+            {/* Al darle clic (chat abierto), Miki se sienta y mueve la colita */}
+            {isRobot ? <Astra walking={walking} /> : <Miki walking={walking} sitting={open} />}
           </motion.div>
           <span className="bot-launcher-label">{open ? 'Cerrar' : 'Ayuda'}</span>
         </motion.button>
