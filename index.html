@@ -1,18 +1,67 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-GT">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Astramedic · Atención a domicilio en Guatemala</title>
-    <meta name="description" content="Atención médica y veterinaria a domicilio en todo el departamento de Guatemala. Planes anuales para personas y mascotas con visitas sin límite a domicilio." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Básicos para Google -->
+    <title>Astramedic | Atención médica y veterinaria a domicilio en Guatemala</title>
+    <meta name="description" content="Astramedic: planes anuales de atención médica y veterinaria a domicilio en todo el departamento de Guatemala. Visitas sin límite. Personas desde Q840 y mascotas desde Q600 al año." />
+    <meta name="keywords" content="Astramedic, AstraMedic, médico a domicilio Guatemala, veterinario a domicilio Guatemala, consulta médica a domicilio, laboratorios a domicilio, vacunas mascotas, plan de salud Guatemala" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Astramedic" />
+    <link rel="canonical" href="%SITE_URL%/" />
+    <meta name="geo.region" content="GT-GU" />
+    <meta name="geo.placename" content="Guatemala" />
+    %GOOGLE_VERIFICATION%
+
+    <!-- Vista previa al compartir (WhatsApp, Facebook, Instagram, LinkedIn…) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Astramedic" />
+    <meta property="og:locale" content="es_GT" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:title" content="Astramedic · Atención médica y veterinaria a domicilio" />
+    <meta property="og:description" content="Planes anuales con visitas sin límite a domicilio en todo el departamento de Guatemala. Personas desde Q840 · Mascotas desde Q600." />
+    <meta property="og:image" content="%SITE_URL%/og-image.png" />
+    <meta property="og:image:secure_url" content="%SITE_URL%/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo de Astramedic: atención médica y veterinaria a domicilio en Guatemala" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Astramedic · Atención médica y veterinaria a domicilio" />
+    <meta name="twitter:description" content="Visitas sin límite a domicilio en todo el departamento de Guatemala." />
+    <meta name="twitter:image" content="%SITE_URL%/og-image.png" />
+
+    <!-- Íconos y app -->
     <meta name="theme-color" content="#01265c" />
     <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+    <!-- Datos estructurados para Google -->
+    %STRUCTURED_DATA%
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      /* Versión simple que se ve mientras carga (y la que lee Google) */
+      .seo-fallback { min-height: 100vh; padding: 110px 24px 60px; max-width: 760px; margin: 0 auto; font-family: 'Inter Tight', system-ui, sans-serif; color: #01265c; line-height: 1.55; }
+      .seo-fallback header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+      .seo-fallback header img { height: 40px; width: auto; }
+      .seo-fallback .brand { font-weight: 800; letter-spacing: .14em; }
+      .seo-fallback .brand b { color: #01a9b1; }
+      .seo-fallback h1 { font-size: 34px; line-height: 1.1; margin-bottom: 14px; }
+      .seo-fallback h2 { font-size: 22px; margin: 30px 0 8px; }
+      .seo-fallback h3 { font-size: 16px; margin: 14px 0 4px; }
+      .seo-fallback ul { padding-left: 20px; }
+      .seo-fallback a { color: #018a92; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">%STATIC_CONTENT%</div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

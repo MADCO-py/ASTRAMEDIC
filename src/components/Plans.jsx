@@ -3,6 +3,7 @@ import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 import { NOTE, PAYMENT_METHODS, openLead } from '../data.js'
 import { CountUp, Eyebrow, Magnetic, SplitWords, ease } from './ui.jsx'
 import { CatWatcher, SyringeField } from './PlansDecor.jsx'
+import PlanTable from './PlanTable.jsx'
 
 export default function Plans({ data, mode }) {
   const [selected, setSelected] = useState(2)
@@ -105,6 +106,7 @@ export default function Plans({ data, mode }) {
           </Magnetic>
         </motion.div>
       </div>
+      {mode === 'mascotas' && <PlanTable plans={data.plans} />}
     </section>
   )
 }

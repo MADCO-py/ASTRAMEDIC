@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es-GT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página no encontrada · Astramedic</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#01265c" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 32px 20px;
+        font-family: 'Inter Tight', system-ui, sans-serif; color: #fff;
+        background: radial-gradient(120% 90% at 72% 18%, #0b3d80 0%, #01265c 55%, #011a42 100%);
+        overflow: hidden;
+      }
+      .wrap { position: relative; z-index: 1; max-width: 560px; }
+      .logo { display: inline-flex; align-items: center; gap: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; letter-spacing: .14em; font-size: 15px; margin-bottom: 40px; color: #fff; text-decoration: none; }
+      .logo img { height: 34px; }
+      .logo b { color: #01a9b1; font-weight: 800; }
+      .code { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(110px, 26vw, 220px); line-height: .9; letter-spacing: -.05em; color: #01a9b1; }
+      h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(26px, 5vw, 40px); letter-spacing: -.02em; margin: 18px 0 12px; }
+      p { color: #a8bdd8; font-size: 17px; line-height: 1.55; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 34px; }
+      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; font-weight: 600; font-size: 15px; text-decoration: none; }
+      .btn-primary { background: #01a9b1; color: #fff; }
+      .btn-ghost { border: 1px solid rgba(255,255,255,.6); color: #fff; }
+      .btn:hover { filter: brightness(1.1); }
+      /* línea de pulso que se "aplana" */
+      svg.ecg { position: absolute; left: 0; right: 0; top: 50%; width: 100%; height: 160px; transform: translateY(-50%); opacity: .25; }
+      svg.ecg path { fill: none; stroke: #01a9b1; stroke-width: 2; stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: draw 3.2s ease forwards infinite; }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+      @media (prefers-reduced-motion: reduce) { svg.ecg path { animation: none; stroke-dashoffset: 0; } }
+    </style>
+  </head>
+  <body>
+    <svg class="ecg" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 80 H420 L440 60 L455 80 L470 80 L480 20 L495 140 L505 80 L540 80 H1200" />
+    </svg>
+    <main class="wrap">
+      <a class="logo" id="home-logo" href="./">
+        <img id="logo-img" src="" alt="" />
+        <span>ASTRA<b>MEDIC</b></span>
+      </a>
+      <div class="code">404</div>
+      <h1>Esta página no existe</h1>
+      <p>Puede que el enlace esté mal escrito o que la página se haya movido. No te preocupés: seguimos llegando a tu casa.</p>
+      <div class="actions">
+        <a class="btn btn-primary" id="go-personas" href="./">Ir al inicio</a>
+        <a class="btn btn-ghost" id="go-mascotas" href="./#/mascotas">Ver planes de mascotas</a>
+      </div>
+    </main>
+    <script>
+      // Funciona tanto en usuario.github.io/ASTRAMEDIC/ como en un dominio propio
+      (function () {
+        var base = location.pathname.toLowerCase().indexOf('/astramedic/') === 0 ? '/ASTRAMEDIC/' : '/'
+        document.getElementById('home-logo').href = base
+        document.getElementById('go-personas').href = base + '#/personas'
+        document.getElementById('go-mascotas').href = base + '#/mascotas'
+        document.getElementById('logo-img').src = base + 'img/logo-mark-light.png'
+      })()
+    </script>
+  </body>
+</html>

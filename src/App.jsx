@@ -18,6 +18,7 @@ import PetCalculator from './components/PetCalculator.jsx'
 import PetGallery from './components/PetGallery.jsx'
 import LeadForm from './components/LeadForm.jsx'
 import Legal from './components/Legal.jsx'
+import MobileWhatsApp from './components/MobileWhatsApp.jsx'
 
 const readHash = () => (window.location.hash.replace(/^#\/?/, '') === 'mascotas' ? 'mascotas' : 'personas')
 
@@ -41,8 +42,8 @@ export default function App() {
   useEffect(() => {
     document.documentElement.dataset.mode = mode
     document.title = mode === 'mascotas'
-      ? 'Astramedic Mascotas · Veterinaria a domicilio en Guatemala'
-      : 'Astramedic · Atención médica a domicilio en Guatemala'
+      ? 'Astramedic Mascotas | Veterinario a domicilio en Guatemala'
+      : 'Astramedic | Médico a domicilio en Guatemala'
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', mode === 'mascotas' ? '#01a9b1' : '#01265c')
     if (readHash() !== mode) history.replaceState(null, '', `#/${mode}`)
   }, [mode])
@@ -100,6 +101,7 @@ export default function App() {
           <Footer mode={mode} onSwitch={requestSwitch} scrollTo={scrollTo} />
         </motion.main>
       </AnimatePresence>
+      <MobileWhatsApp mode={mode} />
       <Chatbot mode={mode} />
       <LeadForm mode={mode} />
       <Legal />
